@@ -1,11 +1,15 @@
 pub mod l1d;
+pub mod pipecopy;
 pub mod shacrypt;
 pub mod sieve;
+pub mod socketpaircopy;
 
 use anyhow::Result;
 use self::l1d::measure_l1d;
+use self::pipecopy::PipeCopyTest;
 use self::shacrypt::ShaCryptVerifyTest;
 use self::sieve::SieveTest;
+use self::socketpaircopy::SocketPairCopyTest;
 
 fn banner() {
     println!("HyperBench version {}.  Copyright 2024 Edera Inc.\n", env!("CARGO_PKG_VERSION"));
@@ -52,6 +56,8 @@ fn main() {
     let tests: Vec<Box<dyn Test>> = vec![
         Box::new(ShaCryptVerifyTest {}),
         Box::new(SieveTest {}),
+        Box::new(PipeCopyTest {}),
+        Box::new(SocketPairCopyTest {}),
     ];
     let mut totalscore: f32 = 0.0;
     let mut runtests = 0;
