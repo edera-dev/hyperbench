@@ -11,7 +11,7 @@ impl Test for SocketPairCopyTest {
         "Socketpair copy (1GiB)".to_string()
     }
 
-    fn run(&self, paras: TestParameters) -> Result<f32, ()> {
+    fn run(&self, _paras: TestParameters) -> Result<f32, ()> {
         let (mut reader, mut writer) = socketpair::socketpair_stream().expect("failed to open socketpair");
         let mut buf = vec![0u8; 1024];
 
