@@ -1,8 +1,10 @@
 pub mod l1d;
+pub mod shacrypt;
 pub mod sieve;
 
 use anyhow::Result;
 use self::l1d::measure_l1d;
+use self::shacrypt::ShaCryptVerifyTest;
 use self::sieve::SieveTest;
 
 fn banner() {
@@ -48,17 +50,19 @@ fn main() {
 
     let testparas = TestParameters { l1d };
     let tests: Vec<Box<dyn Test>> = vec![
+        Box::new(ShaCryptVerifyTest {}),
         Box::new(SieveTest {}),
     ];
     let mut totalscore: f32 = 0.0;
     let mut runtests = 0;
 
     for test in tests {
+        print!("Test '{}': ", test.name());
         let result = test.run(testparas).expect("failed to run test");
-        println!("Test '{}': {}", test.name(), result);
+        println!("{}", result);
         totalscore += result;
         runtests += 1;
     }
 
-    println!("\nFinal score: {}", totalscore / (runtests as f32));
+    println!("\nFinal score (lower is better): {}", totalscore / (runtests as f32));
 }
