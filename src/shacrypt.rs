@@ -13,7 +13,7 @@ impl Test for ShaCryptVerifyTest {
         "SHA512-crypt password verification".to_string()
     }
 
-    fn run(&self, paras: TestParameters) -> Result<f32, ()> {
+    fn run(&self, _paras: TestParameters) -> Result<f32, ()> {
         let starttime = clock_gettime(ClockId::CLOCK_REALTIME).expect("realtime clock value not found");
         let start_ns = (starttime.tv_sec() * 1000000000 + starttime.tv_nsec()) / 1000;
 
