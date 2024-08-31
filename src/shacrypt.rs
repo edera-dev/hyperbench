@@ -15,14 +15,14 @@ impl Test for ShaCryptVerifyTest {
 
     fn run(&self, _paras: TestParameters) -> Result<f32, ()> {
         let starttime = clock_gettime(ClockId::CLOCK_REALTIME).expect("realtime clock value not found");
-        let start_ns = (starttime.tv_sec() * 1000000000 + starttime.tv_nsec()) / 1000;
+        let start_ns = (starttime.tv_sec() * 1_000_000_000 + starttime.tv_nsec()) / 1000;
 
         for _ in 0..1000 {
             let _ = sha512_check(ANSWER, VERIFY_HASH);
         }
 
         let endtime = clock_gettime(ClockId::CLOCK_REALTIME).expect("realtime clock value not found");
-        let end_ns = (endtime.tv_sec() * 1000000000 + endtime.tv_nsec()) / 1000;
+        let end_ns = (endtime.tv_sec() * 1_000_000_000 + endtime.tv_nsec()) / 1000;
 
         let result = (end_ns - start_ns) as f32;
 
