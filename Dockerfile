@@ -1,4 +1,4 @@
-FROM rust:1.80-alpine@sha256:1f5aff501e02c1384ec61bb47f89e3eebf60e287e6ed5d1c598077afc82e83d5 AS build
+FROM rust:1.81-alpine@sha256:d6e876ca5fe200f4ac60312b95606f0b042699c4cf6a19493b7d2a2ebbfb337b AS build
 RUN apk add build-base && rm -rf /var/cache/apk/*
 
 WORKDIR /usr/src/app
